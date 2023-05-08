@@ -4,8 +4,10 @@ import Body from './components/Body'
 function App() {
   return (
     <>
-      <Header />
-      <Body />
+      <div className='container mx-auto'>
+        <Header />
+        <Body />
+      </div>
     </>
   )
 }
