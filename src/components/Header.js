@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom'
 const Header = () => {
   return (
     <div className=' grid grid-flow-col p-5 m-2 shadow-lg'>
       <div className='flex col-span-1'>
-        <img
-          className='h-8 cursor-pointer'
-          src={require('../Images/hamburger.png')}
-          alt='Hamburger logo'
-        />
+        <Link to={'/'}>
+          <img
+            className='h-8 cursor-pointer'
+            src={require('../Images/hamburger.png')}
+            alt='Hamburger logo'
+          />
+        </Link>
         <img
           className='h-8 mx-6 cursor-pointer'
           src={require('../Images/youtube.png')}
