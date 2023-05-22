@@ -1,18 +1,38 @@
 import Header from './components/Header'
 import Body from './components/Body'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import store from './utils/store'
+import MainContainer from './components/MainContainer'
+import WatchPage from './components/WatchPage'
+
+const appRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <Body />,
+    children: [
+      {
+        path: '/',
+        element: <MainContainer />,
+      },
+      {
+        path: '/watch',
+        element: <WatchPage />,
+      },
+    ],
+  },
+])
+
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
+    <>
+      <Provider store={store}>
         <div className='container mx-auto'>
           <Header />
-          <Body />
+          <RouterProvider router={appRouter} />
         </div>
-      </BrowserRouter>
-    </Provider>
+      </Provider>
+    </>
   )
 }
 
