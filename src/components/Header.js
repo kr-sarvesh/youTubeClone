@@ -1,5 +1,4 @@
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { toggleMenu } from '../utils/appSlice'
 
 const Header = () => {
@@ -11,13 +10,12 @@ const Header = () => {
   return (
     <div className=' grid grid-flow-col p-5 m-2 shadow-lg'>
       <div className='flex col-span-1'>
-        <Link onClick={() => toggleMenuHandler()} to={'/'}>
-          <img
-            className='h-8 cursor-pointer'
-            src={require('../Images/hamburger.png')}
-            alt='Hamburger logo'
-          />
-        </Link>
+        <img
+          onClick={() => toggleMenuHandler()}
+          className='h-8 cursor-pointer'
+          src={require('../Images/hamburger.png')}
+          alt='Hamburger logo'
+        />
         <img
           className='h-8 mx-6 cursor-pointer'
           src={require('../Images/youtube.png')}
