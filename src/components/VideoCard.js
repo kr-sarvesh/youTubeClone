@@ -1,4 +1,5 @@
 function VideoCard({ info }) {
+  // destructuring the info object
   const { snippet, statistics } = info
   const { channelTitle, title, thumbnails } = snippet
 
@@ -9,9 +10,20 @@ function VideoCard({ info }) {
         <h3 className='font-bold py-2'>{title}</h3>
         <div>
           <p>{channelTitle}</p>
-          <p>{statistics.viewCount} Views</p>
+          <p>
+            {statistics.viewCount} <span className='text-lg'>Views</span>{' '}
+          </p>
         </div>
       </div>
+    </div>
+  )
+}
+
+// HOC
+export const AdVideoCard = ({ info }) => {
+  return (
+    <div className='p-1 m-1 cursor-pointer border rounded-md border-red-200'>
+      <VideoCard info={info} />
     </div>
   )
 }
