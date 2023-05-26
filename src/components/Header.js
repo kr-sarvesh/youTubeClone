@@ -1,15 +1,34 @@
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenu } from '../utils/appSlice'
 import { useState, useEffect } from 'react'
 import { YOUTUBE_SEARCH_API } from '../utils/constant'
+import { cacheResults } from '../utils/searchSlice'
 
 const Header = () => {
   const [searchQuery, setSearchQuery] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(false)
+
+  const searchCache = useSelector((store) => store.search)
+  const dispatch = useDispatch()
+
+  /**
+   * searchCache = {
+   *  "iphone":["iphone 12","iphone 11","iphone 12 pro max"]
+   * }
+   * searchQuery = "iphone"
+   */
+
   useEffect(() => {
     console.log(searchQuery)
-    const timer = setTimeout(() => getSearchResults(), 200)
+
+    const timer = setTimeout(() => {
+      if (searchCache[searchQuery]) {
+        setSuggestions(searchCache[searchQuery])
+      } else {
+        getSearchResults()
+      }
+    }, 200)
 
     return () => {
       console.log('clear')
@@ -23,8 +42,14 @@ const Header = () => {
     const response = await data.json()
     console.log(response)
     setSuggestions(response[1])
+
+    // update cache
+    dispatch(
+      cacheResults({
+        [searchQuery]: response[1],
+      })
+    )
   }
-  const dispatch = useDispatch()
 
   const toggleMenuHandler = () => {
     dispatch(toggleMenu())
