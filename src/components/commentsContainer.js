@@ -1,3 +1,4 @@
+// hardcore comment Data
 const commentData = [
   {
     name: 'John Doe',
@@ -52,6 +53,7 @@ const CommentList = ({ comments }) => {
           <>
             <Comment data={comment} key={index} />
             <div className='pl-5 border border-l-black ml-5'>
+              {/* recursing with replies */}
               <CommentList comments={comment.replies} />
             </div>
           </>
@@ -62,7 +64,7 @@ const CommentList = ({ comments }) => {
 }
 
 const Comment = ({ data }) => {
-  const { name, text, replies } = data
+  const { name, text } = data
   return (
     <div
       className='flex shadow-sm bg-gray-100
