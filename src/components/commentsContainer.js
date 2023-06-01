@@ -1,4 +1,4 @@
-// hardcore comment Data
+// hardcoded comment Data
 const commentData = [
   {
     name: 'John Doe',
@@ -46,21 +46,15 @@ const commentData = [
 ]
 
 const CommentList = ({ comments }) => {
-  return (
-    <div>
-      {comments.map((comment, index) => {
-        return (
-          <>
-            <Comment data={comment} key={index} />
-            <div className='pl-5 border border-l-black ml-5'>
-              {/* recursing with replies */}
-              <CommentList comments={comment.replies} />
-            </div>
-          </>
-        )
-      })}
+  return comments.map((comment, index) => (
+    <div key={index}>
+      <Comment data={comment} />
+      <div className='pl-5 border border-l-black ml-5'>
+        {/* recursing with replies */}
+        <CommentList comments={comment.replies} />
+      </div>
     </div>
-  )
+  ))
 }
 
 const Comment = ({ data }) => {
