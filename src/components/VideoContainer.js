@@ -7,7 +7,7 @@ const VideoContainer = () => {
   const [videos, setVideos] = useState([])
   const getVideos = async () => {
     const data = await fetch(YOUTUBE_VIDEOS_API)
-    const json = await data.json()
+    const json = await data?.json()
     setVideos(json.items)
   }
 
