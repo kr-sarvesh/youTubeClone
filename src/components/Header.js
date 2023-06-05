@@ -69,7 +69,7 @@ const Header = () => {
           alt='Hamburger logo'
         />
       </div>
-      <div className='col-span-10'>
+      <div className='col-span-10 relative'>
         <input
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -99,7 +99,7 @@ const Header = () => {
           🔍
         </button>
         <div
-          className='fixed ml-[11.3rem] px-2 py-3 rounded-md bg-white w-[35rem] cursor-default
+          className='absolute ml-[11.3rem] px-2 py-3 rounded-md bg-white w-[35rem] cursor-default
         border border-gray-100
         '
         >
